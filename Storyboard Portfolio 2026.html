@@ -1,0 +1,844 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Storyboard Portfolio</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #f5f5f5;
+  color: #111;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+header {
+  background: #111;
+  color: white;
+  padding: 65px 8% 55px;
+}
+
+.topline {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #555;
+  padding-bottom: 20px;
+  font-size: 11px;
+  letter-spacing: 3px;
+}
+
+.hero {
+  padding-top: 65px;
+}
+
+.hero h1 {
+  font-size: clamp(38px, 8vw, 90px);
+  letter-spacing: -4px;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.hero p {
+  margin-top: 25px;
+  color: #aaa;
+  font-size: 12px;
+  letter-spacing: 3px;
+  line-height: 2;
+}
+
+main {
+  max-width: 1250px;
+  margin: auto;
+  padding: 65px 7%;
+}
+
+.section-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 35px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 15px;
+}
+
+.section-title h2 {
+  font-size: 13px;
+  letter-spacing: 3px;
+}
+
+.section-title span {
+  font-size: 11px;
+  color: #777;
+}
+
+.projects {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 45px 25px;
+}
+
+.project {
+  min-width: 0;
+}
+
+.project-number {
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: #777;
+  margin-bottom: 12px;
+}
+
+.preview {
+  background: #181818;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.preview video,
+.preview iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  object-fit: contain;
+  background: #111;
+}
+
+.empty {
+  text-align: center;
+  color: white;
+  padding: 20px;
+}
+
+.empty .symbol {
+  font-size: 35px;
+  margin-bottom: 12px;
+}
+
+.empty p {
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: #aaa;
+}
+
+.project-info {
+  padding-top: 18px;
+}
+
+.project-info input,
+.project-info textarea {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  padding: 10px 0;
+  font-family: inherit;
+  color: #111;
+  outline: none;
+}
+
+.project-info input {
+  font-size: 19px;
+  font-weight: bold;
+}
+
+.project-info textarea {
+  resize: vertical;
+  min-height: 48px;
+  font-size: 12px;
+}
+
+.upload {
+  display: inline-block;
+  margin-top: 15px;
+  background: #111;
+  color: white;
+  padding: 12px 18px;
+  cursor: pointer;
+  font-size: 10px;
+  letter-spacing: 2px;
+  transition: .2s;
+}
+
+.upload:hover {
+  background: #555;
+}
+
+.upload input {
+  display: none;
+}
+
+.file-name {
+  font-size: 10px;
+  color: #777;
+  margin-top: 10px;
+  overflow-wrap: anywhere;
+}
+
+.remove {
+  background: none;
+  border: none;
+  color: #999;
+  font-size: 10px;
+  text-decoration: underline;
+  cursor: pointer;
+  margin-left: 12px;
+}
+
+footer {
+  background: #111;
+  color: white;
+  text-align: center;
+  padding: 45px 20px;
+  font-size: 10px;
+  letter-spacing: 3px;
+  line-height: 2;
+}
+
+/* CONTACT SECTION */
+
+.contact-section {
+  margin-top: 100px;
+  padding-top: 40px;
+  border-top: 1px solid #ccc;
+}
+
+.contact-description {
+  font-size: 13px;
+  color: #777;
+  line-height: 2;
+  margin-bottom: 35px;
+  max-width: 500px;
+}
+
+.contact-form {
+  max-width: 650px;
+}
+
+.contact-form label {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 2px;
+  margin-top: 25px;
+  color: #555;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 14px 0;
+  margin-top: 8px;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  font-family: inherit;
+  font-size: 13px;
+  outline: none;
+  color: #111;
+}
+
+.contact-form textarea {
+  resize: vertical;
+}
+
+.contact-form button {
+  margin-top: 30px;
+  padding: 16px 25px;
+  background: #111;
+  color: white;
+  border: none;
+  font-size: 10px;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.contact-form button:hover {
+  background: #555;
+}
+
+@media(max-width: 650px) {
+  .projects {
+    grid-template-columns: 1fr;
+    gap: 35px;
+  }
+
+  header {
+    padding: 40px 6%;
+  }
+
+  main {
+    padding: 45px 6%;
+  }
+
+  .hero h1 {
+    letter-spacing: -2px;
+  }
+}
+/* WEBSITE NAVIGATION */
+
+.site-nav {
+  background: #111;
+  color: white;
+  padding: 20px 8%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-logo {
+  color: white;
+  text-decoration: none;
+  font-size: 11px;
+  letter-spacing: 2px;
+  font-weight: bold;
+}
+
+.nav-links {
+  display: flex;
+  gap: 30px;
+}
+
+.nav-links a {
+  color: #aaa;
+  text-decoration: none;
+  font-size: 10px;
+  letter-spacing: 2px;
+  transition: .2s;
+}
+
+.nav-links a:hover {
+  color: white;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+#about,
+#contact,
+#home {
+  scroll-margin-top: 75px;
+}
+
+@media(max-width: 650px) {
+  .site-nav {
+    padding: 20px 6%;
+    gap: 15px;
+    flex-wrap: wrap;
+  }
+
+  .nav-links {
+    gap: 15px;
+  }
+}
+
+/* ABOUT ME SECTION */
+
+.about-section {
+  margin-top: 100px;
+  padding-top: 20px;
+}
+
+.about-content {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 45px;
+  align-items: start;
+}
+
+.about-image img {
+  width: 100%;
+  display: block;
+  height: auto;
+}
+
+.about-text h2 {
+  font-size: 18px;
+  letter-spacing: 2px;
+  margin-bottom: 25px;
+}
+
+.about-text p {
+  font-size: 13px;
+  color: #666;
+  line-height: 2.2;
+  margin-bottom: 20px;
+}
+
+@media(max-width: 650px) {
+  .about-content {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+}
+
+</style>
+</head>
+
+<body>
+  <nav class="site-nav">
+
+    <a href="#home" class="nav-logo">
+      CAMERON NESTOROVSKI
+    </a>
+  
+    <div class="nav-links">
+      <a href="#home">HOME</a>
+      <a href="#about">ABOUT</a>
+      <a href="#contact">CONTACT</a>
+    </div>
+  
+  </nav>
+<header id="home">
+  <div class="topline">
+    <span>STORYBOARD PORTFOLIO</span>
+    <span>Cameron Nestorovski</span>
+  </div>
+
+  <div class="hero">
+    <h1>Storyboard<br>Portfolio.</h1>
+    <p>
+      VISUAL STORYTELLING<br>
+      FILM · CINEMA · STORYBOARDING
+    </p>
+  </div>
+</header>
+
+<main>
+
+  <div class="section-title">
+    <h2>STORYBOARD GALLERY</h2>
+  
+  </div>
+
+  <div class="projects" id="projects"></div>
+
+<!-- STORYBOARD GALLERY -->
+
+<section class="extra-section">
+
+    <p>Sketches</p>
+  
+   
+  
+    <div class="image-gallery">
+  
+      <div class="gallery-item">
+        <p>Gladiatrix Thumbnails.</p>
+        <img src="Gladiatrix zero draft .png"
+             alt="Storyboard sequence 01" width="600" height="400" style="padding-top: 10px; padding-bottom: 15px; padding-left: 20px;">
+      
+      </div>
+  
+      <div class="gallery-item">
+        <p>Sand-Wizard Zero Draft.</p>
+        <img src="Sand-Wizard zero draft.png"
+             alt="Storyboard sequence 02" width="600" height="400" style="padding-top: 10px; padding-bottom: 15px; padding-left: 20px;">
+        
+      </div>
+  
+      <div class="gallery-item">
+        <p>Sand-Wizard Sketches w/notes.</p>
+        <img src="sand wizard sketch .png"
+             alt="Storyboard sequence 03" width="600" height="400" style="padding-top: 10px; padding-bottom: 15px; padding-left: 20px;">
+       
+      </div>
+  
+      <div class="gallery-item">
+        <p>Gladiatrix Thumbnail</p>
+        <img src="Gladiatrix Thumbnail.JPG"
+             alt="Storyboard sequence 04" width="600" height="400" style="padding-top: 10px; padding-bottom: 15px; padding-left: 20px;">
+       
+      </div>
+  
+    </div>
+  
+  </section>
+  <!-- ABOUT ME SECTION -->
+
+<section class="about-section" id="about">
+
+  <div class="section-title">
+    <h2>ABOUT ME</h2>
+    <span>THE ARTIST BEHIND THE STORIES</span>
+  </div>
+
+  <div class="about-content">
+
+    <div class="about-image">
+      <img src="IMG_4349.jpeg"
+           alt="Cameron Nestorovski">
+    </div>
+
+    <div class="about-text">
+
+      <h2>HELLO, I'M CAMERON.</h2>
+
+      <p>
+        I am a passionate animator & storyboard artist. 
+        He is currently pursuing a degree in Visual Communication Design 
+        at Purdue University Northwest. I’m someone who believes in the power 
+        of storytelling. From the child who wants to be like their favorite 
+        character to a short film that has the right message, for the right 
+        person, at the right time. Also, I love creating cool characters, 
+        epic creatures & the exploration of “what if ...”. I’m drawn to 
+        storyboarding because I love how simple drawing can become awesome 
+        moments on screen. What attracted me to the animation industry was 
+        seeing YouTubers like Olan Rogers create their own shows. I saw how 
+        indie animation took creators with small, but loyal fanbases, 
+        to rock-stars in the animation industry. That inspired me; 
+        I want to be a part of that. 
+      </p>
+
+     
+
+    </div>
+
+  </div>
+<!-- CONTACT SECTION -->
+
+<section class="contact-section" id="contact">
+
+  <div class="section-title">
+    <h2>GET IN TOUCH</h2>
+    <span>CONTACT</span>
+  </div>
+
+  <p class="contact-description">
+    Interested in working together?
+    Have a project in mind? I'd love to hear from you.
+  </p>
+
+  <form class="contact-form"
+        action="https://formsubmit.co/cparkern2002@gmail.com"
+        method="POST">
+
+    <input type="hidden" name="_subject"
+           value="New Portfolio Contact">
+
+    <input type="hidden" name="_captcha"
+           value="true">
+
+    <input type="hidden" name="_template"
+           value="table">
+
+    <label for="name">YOUR NAME</label>
+    <input type="text" id="name" name="name"
+           placeholder="Enter your name" required>
+
+    <label for="email">YOUR EMAIL</label>
+    <input type="email" id="email" name="email"
+           placeholder="Enter your email" required>
+
+    <label for="message">YOUR MESSAGE</label>
+    <textarea id="message" name="message"
+              placeholder="Tell me about your project..."
+              rows="6" required></textarea>
+
+    <button type="submit">SEND MESSAGE ↗</button>
+
+  </form>
+
+</section>
+
+
+
+</section>
+
+</main>
+
+<footer>
+  STORYBOARD PORTFOLIO<br>
+  VISUAL STORIES · CREATIVE WORK
+</footer>
+
+<script>
+const projects = [
+  { type: "video", title: "Video Project 01" },
+  { type: "pdf", title: "Storyboard Project 02" },
+  { type: "pdf", title: "Storyboard Project 03" },
+  { type: "pdf", title: "Storyboard Project 04" },
+  { type: "video", title: "Video Project 05" },
+  { type: "video", title: "Video Project 06" },
+  { type: "pdf", title: "Storyboard Project 07" },
+  { type: "pdf", title: "Storyboard Project 08" },
+  { type: "pdf", title: "Storyboard Project 09"}
+];
+
+const container = document.getElementById("projects");
+
+const dbRequest = indexedDB.open("StoryboardPortfolio", 1);
+
+let db;
+
+dbRequest.onupgradeneeded = event => {
+  db = event.target.result;
+  db.createObjectStore("files");
+};
+
+dbRequest.onsuccess = event => {
+  db = event.target.result;
+  renderProjects();
+};
+
+dbRequest.onerror = () => {
+  alert("Storage could not be opened. Please try another browser.");
+};
+
+function saveFile(index, file) {
+  return new Promise((resolve, reject) => {
+    const transaction = db.transaction("files", "readwrite");
+    transaction.objectStore("files").put(file, index);
+    transaction.oncomplete = resolve;
+    transaction.onerror = reject;
+  });
+}
+
+function getFile(index) {
+  return new Promise((resolve, reject) => {
+    const transaction = db.transaction("files", "readonly");
+    const request = transaction.objectStore("files").get(index);
+    request.onsuccess = () => resolve(request.result);
+    request.onerror = reject;
+  });
+}
+
+function deleteFile(index) {
+  return new Promise((resolve, reject) => {
+    const transaction = db.transaction("files", "readwrite");
+    transaction.objectStore("files").delete(index);
+    transaction.oncomplete = resolve;
+    transaction.onerror = reject;
+  });
+}
+
+function renderProjects() {
+  container.innerHTML = "";
+
+  projects.forEach((project, index) => {
+    const number = String(index + 1).padStart(2, "0");
+
+    const card = document.createElement("article");
+    card.className = "project";
+
+    card.innerHTML = `
+      <div class="project-number">
+        PROJECT ${number} / ${project.type.toUpperCase()}
+      </div>
+
+      <div class="preview" id="preview-${index}">
+        <div class="empty">
+          <div class="symbol">
+            ${project.type === "video" ? "▶" : "▤"}
+          </div>
+          <p>UPLOAD YOUR ${project.type.toUpperCase()}</p>
+        </div>
+      </div>
+
+      <div class="project-info">
+        <input
+          class="project-title"
+          data-index="${index}"
+          value="${project.title}"
+          aria-label="Project title"
+          placeholder="Project title"
+        >
+
+        <textarea
+          class="project-description"
+          data-index="${index}"
+          placeholder="Add a short project description..."
+          aria-label="Project description"
+        ></textarea>
+
+        <label class="upload">
+          + UPLOAD ${project.type.toUpperCase()}
+          <input
+            type="file"
+            accept="${project.type === "video" ? "video/*" : "application/pdf,.pdf"}"
+            data-index="${index}"
+          >
+        </label>
+
+        <div class="file-name" id="filename-${index}">
+          No file uploaded yet
+        </div>
+
+        <button class="remove" data-remove="${index}">
+          Remove file
+        </button>
+      </div>
+    `;
+
+    container.appendChild(card);
+  });
+
+  document.querySelectorAll(".project-title").forEach(input => {
+    input.addEventListener("input", event => {
+      const i = event.target.dataset.index;
+      projects[i].title = event.target.value;
+      saveMetadata();
+    });
+  });
+
+  document.querySelectorAll(".project-description").forEach(input => {
+    input.value = projects[input.dataset.index].description || "";
+    input.addEventListener("input", event => {
+      projects[event.target.dataset.index].description =
+        event.target.value;
+      saveMetadata();
+    });
+  });
+
+  document.querySelectorAll(".upload input").forEach(input => {
+    input.addEventListener("change", async event => {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const i = Number(event.target.dataset.index);
+      const isVideo = projects[i].type === "video";
+
+      if (isVideo && !file.type.startsWith("video/")) {
+        alert("Please select a video file.");
+        return;
+      }
+
+      if (!isVideo && file.type !== "application/pdf" &&
+          !file.name.toLowerCase().endsWith(".pdf")) {
+        alert("Please select a PDF file.");
+        return;
+      }
+
+      try {
+        await saveFile(i, file);
+        await displayFile(i, file);
+      } catch {
+        alert("Could not save this file. Check your available storage.");
+      }
+    });
+  });
+
+  document.querySelectorAll(".remove").forEach(button => {
+    button.addEventListener("click", async () => {
+      const i = Number(button.dataset.remove);
+      await deleteFile(i);
+      clearPreview(i);
+    });
+  });
+
+  restoreFiles();
+}
+
+function saveMetadata() {
+  const metadata = projects.map(p => ({
+    title: p.title,
+    description: p.description
+  }));
+
+  try {
+    localStorage.setItem(
+      "storyboardMetadata",
+      JSON.stringify(metadata)
+    );
+  } catch {
+    // The portfolio remains usable without metadata storage.
+  }
+}
+
+function loadMetadata() {
+  try {
+    const saved = JSON.parse(
+      localStorage.getItem("storyboardMetadata") || "[]"
+    );
+
+    saved.forEach((item, i) => {
+      if (projects[i]) {
+        projects[i].title = item.title || projects[i].title;
+        projects[i].description = item.description || "";
+      }
+    });
+  } catch {
+    // Use the default project names.
+  }
+}
+
+async function displayFile(index, file) {
+  const preview = document.getElementById(`preview-${index}`);
+  const filename = document.getElementById(`filename-${index}`);
+
+  const oldUrl = preview.dataset.url;
+  if (oldUrl) URL.revokeObjectURL(oldUrl);
+
+  const url = URL.createObjectURL(file);
+  preview.dataset.url = url;
+  preview.innerHTML = "";
+
+  if (projects[index].type === "video") {
+    const video = document.createElement("video");
+    video.src = url;
+    video.controls = true;
+    video.preload = "metadata";
+    preview.appendChild(video);
+  } else {
+    const frame = document.createElement("iframe");
+    frame.src = url;
+    frame.title = "Storyboard PDF preview";
+    preview.appendChild(frame);
+  }
+
+  filename.textContent = file.name;
+}
+
+function clearPreview(index) {
+  const preview = document.getElementById(`preview-${index}`);
+  const oldUrl = preview.dataset.url;
+
+  if (oldUrl) URL.revokeObjectURL(oldUrl);
+
+  preview.dataset.url = "";
+  preview.innerHTML = `
+    <div class="empty">
+      <div class="symbol">
+        ${projects[index].type === "video" ? "▶" : "▤"}
+      </div>
+      <p>UPLOAD YOUR ${projects[index].type.toUpperCase()}</p>
+    </div>
+  `;
+
+  document.getElementById(`filename-${index}`).textContent =
+    "No file uploaded yet";
+}
+
+async function restoreFiles() {
+  for (let i = 0; i < projects.length; i++) {
+    try {
+      const file = await getFile(i);
+      if (file) await displayFile(i, file);
+    } catch {
+      // Continue restoring the other projects.
+    }
+  }
+}
+
+loadMetadata();
+
+
+</script>
+
+</body>
+</html>
